@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 
-import {ProductContext} from '../Store';
+import {UserContext, ProductContext} from '../Store';
 
 const Storefront = () => {
     const [products] = useContext(ProductContext);
-
+    const [User] = useContext(UserContext);
     return (
         <>
         <h1>
