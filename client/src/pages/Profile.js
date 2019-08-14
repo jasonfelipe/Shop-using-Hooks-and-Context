@@ -4,6 +4,7 @@ import { UserContext, ProductsContext } from '../Store';
 const Profile = () => {
     const [user, setUser] = useContext(UserContext);
 
+    
 
     return (
         <div>
@@ -25,7 +26,7 @@ const Profile = () => {
                 </li>)}
             </>
         }
-        
+
             {!user ? 
             <button onClick={() => setUser({name: 'Jason', id: 1, favProducts: ['Chicken', 'Cake', 'Orange Juice']})}>Login as Jason</button>
             :

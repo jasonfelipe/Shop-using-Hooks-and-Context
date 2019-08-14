@@ -8,6 +8,8 @@ const Storefront = () => {
     return (
         <>
         <button onClick={() => window.location = '/profile'}>Go To Profile</button>
+            {!products ? null : 
+            <>
             <h1>
                 Today's Products Are.....
             </h1>
@@ -19,6 +21,9 @@ const Storefront = () => {
                     </li>
                 )}
             </ul>
+            </>
+
+            }
         </>
     );
 };
