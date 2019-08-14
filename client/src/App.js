@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 
 
 const App = () => {
+
   return (
     <Store>
       <Router>
