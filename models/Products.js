@@ -2,14 +2,14 @@ var Sequelize = require('sequelize');
 
 var sequelize = require('../config/connection.js');
 
-var Products = sequelize.define("Storefront_Products", {
+var Products = sequelize.define("products", {
     name: Sequelize.STRING,
-    quality: Sequelize.INTEGER,
+    quantity: Sequelize.INTEGER,
     price: Sequelize.INTEGER
 },
 {
  freezeTableName: true,
- tableName: 'Storefront_Products',
+ tableName: 'products',
  timestamps: false
 });
 

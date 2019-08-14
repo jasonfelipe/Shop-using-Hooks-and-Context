@@ -2,14 +2,18 @@ var Sequelize = require('sequelize');
 
 var sequelize = require('../config/connection.js');
 
-var Users = sequelize.define("Storefront_Users", {
-    user: Sequelize.STRING,
-    password: Sequelize.STRING
+var Users = sequelize.define("users", {
+    username: Sequelize.STRING,
+    password: Sequelize.STRING,
+    email: Sequelize.STRING,
+    firstname: Sequelize.STRING,
+    lastname: Sequelize.STRING
+
 },
 {
  freezeTableName: true,
- tableName: 'Storefront_Users',
- timestamps: false
+ tableName: 'users',
+ timestamps: true
 });
 
 Users.sync();

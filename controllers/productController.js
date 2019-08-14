@@ -15,9 +15,6 @@ module.exports = {
             res.send(dbModel);
             console.log('TEST Login success inside userController');
         }).catch(err => res.status(422).json(err));
-
-        
-        
     },
 
     createProduct: function(req,res){
@@ -34,5 +31,11 @@ module.exports = {
 
         }).catch(err => res.status(422).json(err));
 
+    },
+
+    getAllProducts: function(req, res){
+        db.Products.findAll().then(dbModel => {
+            res.send(dbModel).catch(err => res.status(422).json(err));
+        })
     }
 }

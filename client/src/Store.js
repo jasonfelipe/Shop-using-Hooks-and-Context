@@ -1,25 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import API from './utils/API';
 
-
-export const UserContext = React.createContext("Jason");
-export const ProductContext = React.createContext(['Beef', 'Bread', 'Milk']);
-
+const placeHolderUser = { name: 'Jason', id: 1, favProducts: ["Chicken", "Cake", "Orange Juice"] };
+const dbData = API.getAllProducts()
 
 
+export const UserContext = React.createContext(placeHolderUser);
+export const ProductContext = React.createContext(dbData);
 
-const Store = ({children}) => {
-    
-    const [user, setUser] = useState("Jason");
-    const [products, setProducts] = useState(['Beef', 'Bread', 'Milk']);
-    
+
+
+
+const Store = ({ children }) => {
+
+
+    const [user, setUser] = useState(placeHolderUser);
+    const [products, setProducts] = useState(dbData);
+
     return (
         <ProductContext.Provider value={[products, setProducts]}>
-            <UserContext.Provider value = {[user, setUser]}>
+            <UserContext.Provider value={[user, setUser]}>
                 {children}
             </UserContext.Provider>
         </ProductContext.Provider>
-        );
-};   
+    );
+};
 
 export default Store;

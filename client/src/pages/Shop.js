@@ -4,7 +4,8 @@ import {UserContext, ProductContext} from '../Store';
 
 const Storefront = () => {
     const [products] = useContext(ProductContext);
-    const [User] = useContext(UserContext);
+    const [user] = useContext(UserContext);
+    console.log(products)
     return (
         <>
         <h1>
@@ -12,11 +13,11 @@ const Storefront = () => {
         </h1>
         
         <ul>
-            {products.map((items, index) =>    
+            {/* {products.map((items, index) =>    
                 <li key= {index} >
                     {items}
                 </li>
-            )}
+            )} */}
         </ul>
         </>
     );

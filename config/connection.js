@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
 
-var sequelize = new Sequelize("storefrontreact", "root", "root", {
+var sequelize = new Sequelize("reactShop_db", "root", "root", {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
