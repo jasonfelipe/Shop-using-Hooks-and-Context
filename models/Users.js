@@ -1,8 +1,8 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-var sequelize = require('../config/connection.js');
+const sequelize = require('../config/connection.js');
 
-var Users = sequelize.define("users", {
+const Users = sequelize.define("users", {
     username: Sequelize.STRING,
     password: Sequelize.STRING,
     email: Sequelize.STRING,
@@ -16,6 +16,9 @@ var Users = sequelize.define("users", {
  timestamps: true
 });
 
+
+
 Users.sync();
+
 
 module.exports = Users;

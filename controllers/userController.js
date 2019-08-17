@@ -1,13 +1,20 @@
 const db = require('../models/');
 
+
+//bcrypt stuff
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
+
+
+
 module.exports = {
 
-    login: function(req,res){
+    getUserData: function(req,res){
 
         let user = {
             username: req.params.username,
-            password: req.params.password
-
+            password: bcrypt.compareSync(req.params.password, hash)
         }
 
         console.log("Going to back end.");
@@ -18,7 +25,7 @@ module.exports = {
         }).then(dbModel => {
             res.send(dbModel);
             console.log('TEST Login success inside userController');
-        }).catch(err => res.status(422).json(err));
+        }).catch(err => res.status(422).json({err: err, reason: 'password or username is wrong'}));
 
         
         
@@ -27,11 +34,11 @@ module.exports = {
     createUser: function(req,res){
         
         let user = {
-            firstName: req.params.firstName,
-            lastName: req.params.lastName,
-            username:req.params.username,
-            email: req.params.email,
-            password: req.params.password
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            username:req.body.username,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, salt)
         }
 
         db.Users.create({user}).then(dbModel => {

@@ -10,6 +10,6 @@ export default {
     },
 
     addUser: user => {
-        return axios.post('api/users', user);
+        return axios.post('/api/users', user);
     }
 }
