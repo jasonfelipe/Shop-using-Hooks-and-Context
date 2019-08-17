@@ -9,7 +9,7 @@ export default {
         return axios.get('/api/products');
     },
 
-    addUser: user => {
+    createUser: user => {
         return axios.post('/api/users', user);
     }
 }

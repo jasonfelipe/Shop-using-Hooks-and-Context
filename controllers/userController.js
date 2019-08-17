@@ -32,6 +32,7 @@ module.exports = {
     },
 
     createUser: function(req,res){
+        console.log(req.body);
         
         let user = {
             firstName: req.body.firstName,
@@ -41,10 +42,9 @@ module.exports = {
             password: bcrypt.hashSync(req.body.password, salt)
         }
 
-        db.Users.create({user}).then(dbModel => {
+        db.Users.create(user).then(dbModel => {
             res.send(dbModel);
             console.log("TESTING CREATION");
-
         }).catch(err => res.status(422).json(err));
 
     }
