@@ -21,6 +21,10 @@ create table Products (
     price int not null,
     primary key (id)
 );
+
+use reactshop_db;
+
+insert into products(name, quantity, price) values ('Chocolate bar', 100, 10.00), ('Laptop', 1000, 100.00), ('iPhone', 500, 700.00);
     
 
 
