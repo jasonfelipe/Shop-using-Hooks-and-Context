@@ -10,12 +10,9 @@ const salt = bcrypt.genSaltSync(saltRounds);
 
 module.exports = {
 
-    getUserData: function(req,res){
+    getUserData: function(req,res) {
 
-        let user = {
-            username: req.params.username,
-            password: bcrypt.compareSync(req.params.password, hash)
-        }
+        let user = req.params.username;
 
         console.log("Going to back end.");
         db.Users.findAll({
@@ -31,21 +28,39 @@ module.exports = {
         
     },
 
-    createUser: function(req,res){
-        console.log(req.body);
+    loginUser: function (req, res){
         
         let user = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
+            username: req.body.username,
+            password: bcrypt.compareSync(req.body.password, hash)
+        }
+        db.Users.findall({
+            where : {
+                user
+            }
+        }).then(dbModel =>
+            res.send(dbModel)
+        );
+    },
+
+    createUser: function(req, res){
+        console.log("HEllo?", req.body);
+
+        let user = {
+            firstname: req.body.firstName,
+            lastname: req.body.lastName,
             username:req.body.username,
             email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, salt)
-        }
+            password: bcrypt.hashSync(req.body.password, salt),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        };
+
+        console.log("THE USER", user);
 
         db.Users.create(user).then(dbModel => {
             res.send(dbModel);
-            console.log("TESTING CREATION");
         }).catch(err => res.status(422).json(err));
 
     }
-}
+};

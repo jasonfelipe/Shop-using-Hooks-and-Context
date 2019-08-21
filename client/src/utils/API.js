@@ -10,6 +10,7 @@ export default {
     },
 
     createUser: user => {
+        console.log("Front End API", user);
         return axios.post('/api/users', user);
     }
 }

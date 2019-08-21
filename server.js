@@ -1,11 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 
 
-app.use(routes);
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,6 +13,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+//Body-parser should be called in Express and then ran on the routes or else 
+//they won't work!
+const routes = require("./routes");
+app.use(routes);
 
 
 // Start the API server
