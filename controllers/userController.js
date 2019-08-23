@@ -29,18 +29,24 @@ module.exports = {
     },
 
     loginUser: function (req, res){
-        
-        let user = {
-            username: req.body.username,
-            password: bcrypt.compareSync(req.body.password, hash)
-        }
-        db.Users.findall({
+        console.log("THIS REQ.BODY LOGIN LOL", req.body);
+        db.Users.findOne({
             where : {
-                user
+                username: req.body.username,
             }
         }).then(dbModel =>
-            res.send(dbModel)
-        );
+            {
+                console.log("Starting hash check...");
+                console.log(bcrypt.compareSync(req.body.password, dbModel.dataValues.password));
+                if (bcrypt.compareSync(req.body.password, dbModel.dataValues.password)){
+                    return res.send("accepted");
+                } else {
+                    console.log("Hello?");
+                    return res.send({Error: "Wrong Username or Password"});
+                }
+
+            }
+        ).catch(err => res.status(422).json(err));
     },
 
     createUser: function(req, res){

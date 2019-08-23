@@ -5,7 +5,8 @@ router.route('/:user')
     .get(userController.getUserData)
 
 router.route('/')
-    .post(userController.createUser);
+    .post(userController.createUser)
 
-    
+router.route('/login')
+    .post(userController.loginUser);    
 module.exports = router;

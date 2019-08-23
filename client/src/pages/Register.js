@@ -10,9 +10,6 @@ const Register = () => {
     const [email, setEmail] = useState('');
 
 
-
-
-
     const handleRegister = event => {
         event.preventDefault();
         let user = {

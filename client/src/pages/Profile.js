@@ -5,24 +5,9 @@ import API from '../utils/API';
 
 const Profile = () => {
     const [user, setUser] = useContext(UserContext);
-    const [username, setUsername] = useState('');
+    const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
-
-    const handlePasswordInput = event => {
-        const { name, value } = event.target;
-        setPassword({
-            [name]: value
-        });
-    };
-
-    const handleUsernameInput = event => {
-        const { name, value } = event.target;
-        setUsername({
-            [name]: value
-        });
-    };
-
-
+    
     const handleSubmit = event => {
         event.preventDefault();
         let user = {
@@ -30,7 +15,17 @@ const Profile = () => {
             password: password
         }
         console.log(user)
-        // API.getUserData(user);
+        API.loginUser(user).then(res => {
+            console.log(res);
+                    if (res.data == 'accepted'){
+                    setUser({
+                        name: username,
+                        favProducts: ['Chocolate', 'Cake', 'Vanilla Shake']
+                    });                    
+                } else {
+                    console.log("WRONG PASSWORD");
+                }
+            });
 
     }
 
@@ -38,20 +33,18 @@ const Profile = () => {
         <div>
             <button onClick={() => window.location = '/shop'}>Go To Shop</button>
             {!user ?
+
                 <>
-                    <h2>
-                        You Are Not Logged In!
-                </h2>
-                    <Input onChange={handleUsernameInput} name='username' placeholder="Username">
+                <Input onChange={e => setUserName(e.target.value)} name='username' placeholder="Username">
                     </Input>
-                    <Input onChange={handlePasswordInput} name='password' placeholder="Password" type="password">
+                    <Input onChange={e => setPassword(e.target.value)} name='password' placeholder="Password" type="password">
                     </Input>
                     <FormBtn onClick={handleSubmit}>Login</FormBtn>
-
-
-                    <button onClick={() => console.log("Hey")}>Create User</button>
-                </>
-                :
+                    
+                    
+                    <button onClick={() => {console.log("Hey"); window.location ='/register'}}>Create User</button>
+                    </>
+                    :
                 <>
                     <h1>Current User Is:</h1>
                     <h2>{user.name}</h2>
