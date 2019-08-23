@@ -7,27 +7,25 @@ const Profile = () => {
     const [user, setUser] = useContext(UserContext);
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    
+
     const handleSubmit = event => {
         event.preventDefault();
         let user = {
             username: username,
             password: password
         }
-        console.log(user)
         API.loginUser(user).then(res => {
             console.log(res);
-                    if (res.data == 'accepted'){
-                    setUser({
-                        name: username,
-                        favProducts: ['Chocolate', 'Cake', 'Vanilla Shake']
-                    });                    
-                } else {
-                    console.log("WRONG PASSWORD");
-                }
-            });
-
-    }
+            if (res.data == 'accepted') {
+                setUser({
+                    name: username,
+                    favProducts: ['Chocolate', 'Cake', 'Vanilla Shake']
+                });
+            } else {
+                console.log("WRONG PASSWORD");
+            };
+        });
+    };
 
     return (
         <div>
@@ -35,16 +33,19 @@ const Profile = () => {
             {!user ?
 
                 <>
-                <Input onChange={e => setUserName(e.target.value)} name='username' placeholder="Username">
+                    <h2>
+                        No User Logged In!
+                </h2>
+                    <Input onChange={e => setUserName(e.target.value)} name='username' placeholder="Username">
                     </Input>
                     <Input onChange={e => setPassword(e.target.value)} name='password' placeholder="Password" type="password">
                     </Input>
                     <FormBtn onClick={handleSubmit}>Login</FormBtn>
-                    
-                    
-                    <button onClick={() => {console.log("Hey"); window.location ='/register'}}>Create User</button>
-                    </>
-                    :
+
+
+                    <button onClick={() => { console.log("Hey"); window.location = '/register' }}>Create User</button>
+                </>
+                :
                 <>
                     <h1>Current User Is:</h1>
                     <h2>{user.name}</h2>
@@ -55,20 +56,12 @@ const Profile = () => {
                         <li key={products}>
                             {products}
                         </li>)}
+
+                    <button onClick={e => setUser(null)}>Logout</button>
                 </>
             }
-
-
-
-
-
-            {/* {!user ? 
-            <button onClick={() => setUser({name: 'Jason', id: 1, favProducts: ['Chicken', 'Cake', 'Orange Juice']})}>Login as Jason</button>
-            :
-            <button onClick={() => setUser(undefined)}>Log Out</button>
-            } */}
         </div>
     )
-}
+};
 
 export default Profile;
