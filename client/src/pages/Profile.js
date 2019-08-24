@@ -13,7 +13,7 @@ const Profile = () => {
         let user = {
             username: username,
             password: password
-        }
+        };
         API.loginUser(user).then(res => {
             console.log(res);
             if (res.data == 'accepted') {
@@ -21,11 +21,24 @@ const Profile = () => {
                     name: username,
                     favProducts: ['Chocolate', 'Cake', 'Vanilla Shake']
                 });
+                
+                storeLoginStatus(username);
             } else {
                 console.log("WRONG PASSWORD");
             };
         });
     };
+
+    const storeLoginStatus = (username, favProducts) => {
+        sessionStorage.setItem('isLoggedIn', true);
+        sessionStorage.setItem('username', username);
+        sessionStorage.setItem('favProducts', ['Chocolate', 'Cake', 'Vanilla Shake']);
+    };
+
+    const logoutUser = () => {
+        sessionStorage.clear();
+        window.location.reload();
+    }
 
     return (
         <div>
@@ -57,7 +70,7 @@ const Profile = () => {
                             {products}
                         </li>)}
 
-                    <button onClick={e => setUser(null)}>Logout</button>
+                    <button onClick={e => {logoutUser();}}>Logout</button>
                 </>
             }
         </div>

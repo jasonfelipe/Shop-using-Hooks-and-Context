@@ -70,7 +70,7 @@ const Register = () => {
             ></Input>
 
             <FormBtn onClick={handleRegister}>Submit</FormBtn>
-            <button onClick={e => window.location ='/profile'}>Back To Profile</button>
+            <button onClick={() => window.location ='/profile'}>Back To Profile</button>
         </div>
     )
 }
