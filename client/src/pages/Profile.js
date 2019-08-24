@@ -19,7 +19,7 @@ const Profile = () => {
             if (res.data == 'accepted') {
                 setUser({
                     name: username,
-                    favProducts: ['Chocolate', 'Cake', 'Vanilla Shake']
+                    favProducts: undefined
                 });
 
                 storeLoginStatus(username);
@@ -32,7 +32,7 @@ const Profile = () => {
     const storeLoginStatus = (username, favProducts) => {
         sessionStorage.setItem('isLoggedIn', true);
         sessionStorage.setItem('username', username);
-        sessionStorage.setItem('favProducts', ['Chocolate', 'Cake', 'Vanilla Shake']);
+        sessionStorage.setItem('favProducts', undefined);
     };
 
     const logoutUser = () => {
@@ -65,10 +65,15 @@ const Profile = () => {
 
                     <h1>Favorite Products Are:</h1>
 
-                    {user.favProducts.map(products =>
+                    {user.favProducts ? user.favProducts.map(products =>
                         <li key={products}>
                             {products}
-                        </li>)}
+                        </li>)
+                        :
+                        <li>
+                            NO PRODUCTS FOUND!
+                        </li>
+                        }
 
                     <button onClick={e => { logoutUser(); }}>Logout</button>
                 </>
