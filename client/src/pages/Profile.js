@@ -42,7 +42,7 @@ const Profile = () => {
 
     return (
         <div>
-            <button onClick={() => window.location = '/shop'}>Go To Shop</button>
+            <button onClick={() => window.location = '/'}>Go To Shop</button>
             {!user ?
 
                 <>

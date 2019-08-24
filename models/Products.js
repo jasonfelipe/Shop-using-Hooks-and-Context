@@ -10,7 +10,7 @@ var Products = sequelize.define("products", {
 {
  freezeTableName: true,
  tableName: 'products',
- timestamps: false
+ timestamps: true
 });
 
 Products.sync();

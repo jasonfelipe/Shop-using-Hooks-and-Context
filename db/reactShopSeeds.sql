@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS reactShop_db;
+DROP DATABASE IF EXISTS reactshop_db;
 
-create database reactShop_db; 
+create database reactshop_db; 
 
-USE reactShop_db;
+USE reactshop_db;
 
 create table Users (
 	id int auto_increment not null,
@@ -11,8 +11,8 @@ create table Users (
     username varchar(100) not null,
     email varchar(255) not null,
     password varchar(100) not null,
-    createdAt: DATETIME not null,
-    updatedAt: DATETIME not null,
+    createdAt DATETIME not null,
+    updatedAt DATETIME not null,
     primary key(id)
     );
     
@@ -21,6 +21,8 @@ create table Products (
     name varchar(100) not null,
     quantity int not null,
     price int not null,
+    createdAt DATETIME,
+    updatedAt DATETIME,
     primary key (id)
 );
 
