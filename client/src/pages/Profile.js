@@ -7,6 +7,8 @@ const Profile = () => {
     const [user, setUser] = useContext(UserContext);
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [feedback, setFeedback] = useState('No User Logged In');
+
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -16,15 +18,15 @@ const Profile = () => {
         };
         API.loginUser(user).then(res => {
             console.log(res);
-            if (res.data == 'accepted') {
+            if (res.data === 'accepted') {
                 setUser({
                     name: username,
-                    favProducts: undefined
+                    favProducts: null
                 });
 
                 storeLoginStatus(username);
             } else {
-                console.log("WRONG PASSWORD");
+                setFeedback(res.data.error);
             };
         });
     };
@@ -47,7 +49,7 @@ const Profile = () => {
 
                 <>
                     <h2>
-                        No User Logged In!
+                        {feedback}
                     </h2>
                     <Input onChange={e => setUserName(e.target.value)} name='username' placeholder="Username">
                     </Input>

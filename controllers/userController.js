@@ -36,13 +36,16 @@ module.exports = {
             }
         }).then(dbModel =>
             {
+                if (dbModel === null){
+                    return res.send({error: "Username not found!"});
+                }
                 console.log("Starting hash check...");
                 console.log(bcrypt.compareSync(req.body.password, dbModel.dataValues.password));
                 if (bcrypt.compareSync(req.body.password, dbModel.dataValues.password)){
                     return res.send("accepted");
                 } else {
                     console.log("Hello?");
-                    return res.send({Error: "Wrong Username or Password"});
+                    return res.send({error: "Wrong Username or Password!"});
                 }
 
             }
