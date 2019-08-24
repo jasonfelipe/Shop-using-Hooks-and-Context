@@ -21,7 +21,7 @@ const Profile = () => {
                     name: username,
                     favProducts: ['Chocolate', 'Cake', 'Vanilla Shake']
                 });
-                
+
                 storeLoginStatus(username);
             } else {
                 console.log("WRONG PASSWORD");
@@ -48,7 +48,7 @@ const Profile = () => {
                 <>
                     <h2>
                         No User Logged In!
-                </h2>
+                    </h2>
                     <Input onChange={e => setUserName(e.target.value)} name='username' placeholder="Username">
                     </Input>
                     <Input onChange={e => setPassword(e.target.value)} name='password' placeholder="Password" type="password">
@@ -56,7 +56,7 @@ const Profile = () => {
                     <FormBtn onClick={handleSubmit}>Login</FormBtn>
 
 
-                    <button onClick={() => { console.log("Hey"); window.location = '/register' }}>Create User</button>
+                    <button onClick={() => { console.log("Hey"); window.location = '/register'; }}>Create User</button>
                 </>
                 :
                 <>
@@ -70,7 +70,7 @@ const Profile = () => {
                             {products}
                         </li>)}
 
-                    <button onClick={e => {logoutUser();}}>Logout</button>
+                    <button onClick={e => { logoutUser(); }}>Logout</button>
                 </>
             }
         </div>

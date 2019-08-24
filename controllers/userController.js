@@ -58,15 +58,19 @@ module.exports = {
             username:req.body.username,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, salt),
-            createdAt: new Date(),
-            updatedAt: new Date(),
         };
 
         console.log("THE USER", user);
 
         db.Users.create(user).then(dbModel => {
             res.send(dbModel);
-        }).catch(err => res.status(422).json(err));
+        }).catch(err => 
+            {if (err.name == 'SequelizeUniqueConstraintError'){
+                return res.send({
+                    error: "Username Or Email already in use!"});
+            }
+            return res.status(422).json(err);
+        });
 
     }
 };

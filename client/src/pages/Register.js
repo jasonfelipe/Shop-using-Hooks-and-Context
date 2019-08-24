@@ -8,7 +8,7 @@ const Register = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-
+    const [feedback, setFeedback] = useState(undefined);
 
     const handleRegister = event => {
         event.preventDefault();
@@ -19,10 +19,11 @@ const Register = () => {
             firstName: firstName,
             lastName: lastName,
         }
-        console.log(user)
         API.createUser(user).then(res => {
-            console.log("Response", res);
-            console.log(res.statusText);
+            if (res.data.error) {
+                return setFeedback(res.data.error);
+            };
+            return setFeedback("REGISTER COMPLETE!");
         }).catch(err => console.log(err));
 
     };
@@ -30,6 +31,14 @@ const Register = () => {
     return (
         <div>
             <h1>Register!</h1>
+            {feedback ?
+                <h2>
+                    {feedback}
+                </h2> :
+                <h2>
+                    Please Enter Your Information!
+            </h2>
+            }
 
 
             <Input
@@ -70,7 +79,7 @@ const Register = () => {
             ></Input>
 
             <FormBtn onClick={handleRegister}>Submit</FormBtn>
-            <button onClick={() => window.location ='/profile'}>Back To Profile</button>
+            <button onClick={() => window.location = '/profile'}>Back To Profile</button>
         </div>
     )
 }

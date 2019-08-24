@@ -21,9 +21,8 @@ const Store = ({ children }) => {
             });
         }
         API.getAllProducts().then(res => setProducts(res.data));
-    }, [])
+    }, []);
 
-    console.log(user);
 
     return (
         <ProductContext.Provider value={[products, setProducts]}>

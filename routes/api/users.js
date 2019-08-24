@@ -8,5 +8,5 @@ router.route('/')
     .post(userController.createUser);
 
 router.route('/login')
-    .post(userController.loginUser);    
+    .post(userController.loginUser);
 module.exports = router;
