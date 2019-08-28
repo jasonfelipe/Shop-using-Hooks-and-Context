@@ -1,0 +1,26 @@
+.modal-wrapper {
+    background: white;
+    position:fixed;
+    width: 55%;
+    top:5px;
+    left:25%;
+    transition: all .8s;
+    color: black;
+}
+
+.back-drop {
+    background-color: black;
+    /* background-color: rgba(48, 49, 48, 0.42); */
+    height: 100%;
+    position: fixed;
+    transition: all 1.3s;
+    width: 100%;
+}
+
+.modal {
+    height: max-content;
+}
+
+.btn {
+    margin: 5px;
+}

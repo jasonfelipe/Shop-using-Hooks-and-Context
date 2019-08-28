@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import { Modal } from '../components/Modal';
 
 import { UserContext, ProductContext } from '../Store';
 import './style.css'
@@ -6,6 +7,20 @@ import './style.css'
 const Storefront = () => {
     const [products] = useContext(ProductContext);
     const [user] = useContext(UserContext);
+    const [product, setProduct] = useState('');
+    const [isShowing, setIsShowing] = useState(false);
+
+    const handleShowModal = e => {
+        e.preventDefault();
+        setIsShowing(true);
+    }
+
+    const handleCloseModal = e => {
+        e.preventDefault();
+        setIsShowing(false);        
+    }
+
+
     return (
         <>
             <button onClick={() => window.location = '/profile'}>Go To Profile</button>
@@ -50,8 +65,15 @@ const Storefront = () => {
                             Error finding products
                           </h2>}
                 </>
-
             }
+            <button onClick={handleShowModal}>Open Modal</button>
+            <Modal
+                product={product}
+                show={isShowing}
+                close={handleCloseModal}
+            >
+                <h1>TEST</h1>
+            </Modal>
         </>
     );
 };
