@@ -3,13 +3,11 @@ const db = require('../models/');
 module.exports = {
 
     getInfo: function(req,res){
-
-        const productName = req.params.productName
-        console.log(productName);
-        console.log("Going to back end.");
+        const productId = req.params.product
+        console.log(productId);
         db.Products.findAll({
             where: {
-                name: productName
+                id: productId
             }
         }).then(dbModel => {
             console.log('TEST Login success inside userController');

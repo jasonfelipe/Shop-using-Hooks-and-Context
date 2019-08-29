@@ -1,12 +1,18 @@
 import axios from 'axios';
 
 export default {
-    getUserData: user => {
-        return axios.get('/api/users/' + user);
-    },
-
+    
     getAllProducts: () => {
         return axios.get('/api/products');
+    },
+
+    getProductData: id => {
+        console.log('id in api', id);
+        return axios.get('/api/products/'+ id)
+    },
+    
+    getUserData: user => {
+        return axios.get('/api/users/' + user);
     },
 
     createUser: user => {

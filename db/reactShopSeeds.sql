@@ -21,8 +21,8 @@ create table Products (
     name varchar(100) not null,
     quantity int not null,
     price int not null,
-    createdAt DATETIME,
-    updatedAt DATETIME,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     primary key (id)
 );
 
