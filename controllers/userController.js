@@ -61,6 +61,8 @@ module.exports = {
             username:req.body.username,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, salt),
+            createdAt: Date.now(),
+            updatedAt: Date.now()
         };
 
         console.log("THE USER", user);

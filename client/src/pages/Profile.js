@@ -67,7 +67,7 @@ const Profile = () => {
 
                     <h1>Favorite Products Are:</h1>
 
-                    {user.favProducts ? user.favProducts.map(products =>
+                    {user.favProducts === undefined ? user.favProducts.map(products =>
                         <li key={products}>
                             {products}
                         </li>)
