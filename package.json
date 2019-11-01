@@ -28,7 +28,7 @@
     "mysql2": "^1.6.5",
     "prop-types": "^15.6.2",
     "react-router-dom": "^5.0.1",
-    "sequelize": "^5.10.3",
+    "sequelize": "^5.15.1",
     "yarn": "^1.17.3"
   }
 }
